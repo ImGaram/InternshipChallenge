@@ -144,7 +144,10 @@ fun SignUpImageScreen(
             shape = RoundedCornerShape(8.dp),
             border = BorderStroke(width = 1.dp, color = Color(0xFF006A67))
         ) {
-            Text(text = "이전")
+            Text(
+                text = "이전",
+                color = Color.Black
+            )
         }
     }
 }
