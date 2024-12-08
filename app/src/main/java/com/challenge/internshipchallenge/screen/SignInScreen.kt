@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
@@ -30,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
@@ -118,10 +120,11 @@ fun SignInScreen(
                     )
                 }
             },
-            isError = idError.value,
             supportingText = {
                 if (idError.value) Text(text = "비어 있어요")
             },
+            isError = idError.value,
+            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
             colors = TextFieldDefaults.colors(
                 focusedContainerColor = Color(0x1A0000FF),
                 unfocusedIndicatorColor = Color.Blue,
@@ -147,7 +150,7 @@ fun SignInScreen(
             },
             isError = pwError.value,
             visualTransformation = PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password, imeAction = ImeAction.Done),
             supportingText = {
                 if (pwError.value) Text(text = "비어 있어요")
             },
