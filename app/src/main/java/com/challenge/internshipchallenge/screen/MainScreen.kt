@@ -53,9 +53,9 @@ fun MainScreen(
         )
 
         Text(
-            text = "한 달 인턴 지원자 관리 서비스",
+            text = "한 달 인턴 지원자\n관리 서비스",
             style = TextStyle(
-                fontSize = 20.sp,
+                fontSize = 28.sp,
                 fontWeight = FontWeight.SemiBold
             )
         )
