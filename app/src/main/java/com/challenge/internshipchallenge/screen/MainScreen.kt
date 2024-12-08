@@ -49,8 +49,7 @@ fun MainScreen(
         Image(
             imageVector = Icons.Default.AccountBox,
             contentDescription = "app icon",
-            modifier = Modifier
-                .size(50.dp)
+            modifier = Modifier.size(50.dp)
         )
 
         Text(
