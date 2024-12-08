@@ -1,5 +1,6 @@
 package com.challenge.internshipchallenge.screen.signup
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -30,9 +31,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.challenge.internshipchallenge.route.MainRoute
 
 @Composable
-fun SignUpNameScreen(navigateToImage: () -> Unit = {}) {
+fun SignUpNameScreen(
+    navigateToImage: () -> Unit = {},
+    navigateToMain: () -> Unit = {}
+) {
     val id = remember { mutableStateOf("") }
     val userName = remember { mutableStateOf("") }
     val idError = remember { mutableStateOf(false) }
@@ -136,6 +141,20 @@ fun SignUpNameScreen(navigateToImage: () -> Unit = {}) {
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF006A67))
         ) {
             Text(text = "다음")
+        }
+
+        OutlinedButton(
+            onClick = navigateToMain,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 4.dp),
+            shape = RoundedCornerShape(8.dp),
+            border = BorderStroke(width = 1.dp, color = Color(0xFF006A67))
+        ) {
+            Text(
+                text = "취소",
+                color = Color.Black
+            )
         }
     }
 }

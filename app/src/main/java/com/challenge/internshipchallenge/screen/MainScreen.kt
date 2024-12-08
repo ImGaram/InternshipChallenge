@@ -33,8 +33,8 @@ import com.challenge.internshipchallenge.R
 
 @Composable
 fun MainScreen(
-    navigateToSignUp: () -> Unit = {},
-    navigateToProfile: () -> Unit = {}
+    navigateToSignIn: () -> Unit = {},
+    navigateToSignUpName: () -> Unit = {}
 ) {
     val configuration = LocalConfiguration.current
     val width = configuration.screenWidthDp
@@ -80,7 +80,7 @@ fun MainScreen(
         )
 
         Button(
-            onClick = { navigateToProfile() },
+            onClick = { navigateToSignUpName() },
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(8.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF006A67))
@@ -92,7 +92,7 @@ fun MainScreen(
             text = "회원가입",
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
-                .clickable { navigateToSignUp() }
+                .clickable { navigateToSignIn() }
                 .padding(vertical = 4.dp),
             style = TextStyle(
                 color = Color.Blue,

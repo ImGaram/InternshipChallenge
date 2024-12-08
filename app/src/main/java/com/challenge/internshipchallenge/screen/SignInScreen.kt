@@ -1,6 +1,8 @@
 package com.challenge.internshipchallenge.screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material3.Button
@@ -47,14 +50,34 @@ fun SignInScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
-            .padding(vertical = 36.dp, horizontal = 24.dp),
+            .background(Color.White),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Box(
+            modifier = Modifier.fillMaxWidth(),
+            contentAlignment = Alignment.CenterStart
+        ) {
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
+                contentDescription = "back to sign in",
+                modifier = Modifier
+                    .clickable { navigateToMain() }
+                    .padding(vertical = 20.dp, horizontal = 16.dp)
+            )
+
+            Text(
+                text = "로그인",
+                modifier = Modifier.fillMaxWidth(),
+                textAlign = TextAlign.Center
+            )
+        }
+
         Icon(
             imageVector = Icons.Default.AccountBox,
             contentDescription = "app icon",
-            modifier = Modifier.size(50.dp)
+            modifier = Modifier
+                .padding(top = 36.dp)
+                .size(50.dp)
         )
 
         Text(
@@ -80,7 +103,7 @@ fun SignInScreen(
             onValueChange = { id.value = it },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 28.dp),
+                .padding(top = 28.dp, start = 24.dp, end = 24.dp),
             label = { Text(text = "ID") },
             placeholder = { Text(text = "ID를 입력해주세요") },
             trailingIcon = {
@@ -107,7 +130,7 @@ fun SignInScreen(
             onValueChange = { pw.value = it },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 12.dp),
+                .padding(top = 12.dp, start = 24.dp, end = 24.dp),
             label = { Text(text = "비밀번호") },
             placeholder = { Text(text = "비밀번호를 입력해주세요") },
             trailingIcon = {
@@ -140,10 +163,12 @@ fun SignInScreen(
 
                 if (!idError.value && !pwError.value) {
                     // todo :: fireStore 데이터 확인 로직
-                    navigateToMain()
+                    navigateToProfile()
                 }
             },
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 24.dp, end = 24.dp, bottom = 36.dp),
             shape = RoundedCornerShape(8.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF006A67))
         ) {
