@@ -45,6 +45,9 @@ dependencies {
     // compose navigation
     implementation(libs.androidx.navigation.compose)
 
+    // compose viewmodel
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+
     // compose coil
     implementation(libs.coil.compose)
 
