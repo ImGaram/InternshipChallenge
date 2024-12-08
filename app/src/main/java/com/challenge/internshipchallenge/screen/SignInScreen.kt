@@ -36,10 +36,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.challenge.internshipchallenge.data.UserData
+import com.challenge.internshipchallenge.viewmodel.SignInViewModel
 
 @Composable
 fun SignInScreen(
-    navigateToProfile: () -> Unit = {},
+    signInViewModel: SignInViewModel = viewModel<SignInViewModel>(),
+    navigateToProfile: (UserData?) -> Unit = {},
     navigateToMain: () -> Unit = {}
 ) {
     val id = remember { mutableStateOf("") }
@@ -162,8 +166,14 @@ fun SignInScreen(
                 pwError.value = pw.value.isEmpty()
 
                 if (!idError.value && !pwError.value) {
-                    // todo :: fireStore 데이터 확인 로직
-                    navigateToProfile()
+                    signInViewModel.signIn(
+                        id = id.value,
+                        pw = pw.value,
+                        onSuccess = {
+                            navigateToProfile(it)
+                        },
+                        onFailure = {}
+                    )
                 }
             },
             modifier = Modifier
