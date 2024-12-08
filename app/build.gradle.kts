@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.challenge.internshipchallenge"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.challenge.internshipchallenge"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -40,6 +40,9 @@ android {
 }
 
 dependencies {
+
+    // compose navigation
+    implementation(libs.androidx.navigation.compose)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
