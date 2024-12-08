@@ -5,10 +5,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.challenge.internshipchallenge.route.MainRoute
+import com.challenge.internshipchallenge.route.SignUpRoute
 import com.challenge.internshipchallenge.screen.MainScreen
 import com.challenge.internshipchallenge.screen.ProfileScreen
 import com.challenge.internshipchallenge.screen.SignInScreen
-import com.challenge.internshipchallenge.screen.SignUpScreen
+import com.challenge.internshipchallenge.screen.signup.SignUpImageScreen
+import com.challenge.internshipchallenge.screen.signup.SignUpNameScreen
+import com.challenge.internshipchallenge.screen.signup.SignUpPasswordScreen
 
 @Composable
 fun InternshipNavHost(
@@ -21,8 +24,8 @@ fun InternshipNavHost(
     ) {
         composable(MainRoute.Main.name) {
             MainScreen(
-                navigateToSignUp = { navController.navigate(MainRoute.SignIn.name) },
-                navigateToProfile = { navController.navigate(MainRoute.Profile.name) }
+                navigateToSignIn = { navController.navigate(MainRoute.SignIn.name) },
+                navigateToSignUpName = { navController.navigate(SignUpRoute.Name.name) }
             )
         }
 
@@ -33,14 +36,29 @@ fun InternshipNavHost(
             )
         }
 
-        composable(MainRoute.SignUp.name) {
-            SignUpScreen(
-                navigateToSignIn = { navController.navigate(MainRoute.SignUp.name) },
+        composable(MainRoute.Profile.name) {
+            ProfileScreen(
+                navigateToSignIn = { navController.navigate(MainRoute.SignIn.name) }
             )
         }
 
-        composable(MainRoute.Profile.name) {
-            ProfileScreen(
+        composable(SignUpRoute.Name.name) {
+            SignUpNameScreen(
+                navigateToImage = { navController.navigate(SignUpRoute.Image.name) },
+                navigateToMain = { navController.popBackStack() }
+            )
+        }
+
+        composable(SignUpRoute.Image.name) {
+            SignUpImageScreen(
+                navigateToName = { navController.popBackStack() },
+                navigateToPassword = { navController.navigate(SignUpRoute.Password.name) }
+            )
+        }
+
+        composable(SignUpRoute.Password.name) {
+            SignUpPasswordScreen(
+                navigateToImage = { navController.popBackStack() },
                 navigateToSignIn = { navController.navigate(MainRoute.SignIn.name) }
             )
         }
