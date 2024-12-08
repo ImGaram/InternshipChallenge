@@ -5,13 +5,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.challenge.internshipchallenge.route.MainRoute
-import com.challenge.internshipchallenge.route.SignUpRoute
 import com.challenge.internshipchallenge.screen.MainScreen
 import com.challenge.internshipchallenge.screen.ProfileScreen
 import com.challenge.internshipchallenge.screen.SignInScreen
-import com.challenge.internshipchallenge.screen.signup.SignUpImageScreen
-import com.challenge.internshipchallenge.screen.signup.SignUpNameScreen
-import com.challenge.internshipchallenge.screen.signup.SignUpPasswordScreen
+import com.challenge.internshipchallenge.screen.SignUpScreen
 
 @Composable
 fun InternshipNavHost(
@@ -25,7 +22,7 @@ fun InternshipNavHost(
         composable(MainRoute.Main.name) {
             MainScreen(
                 navigateToSignIn = { navController.navigate(MainRoute.SignIn.name) },
-                navigateToSignUpName = { navController.navigate(SignUpRoute.Name.name) }
+                navigateToSignUp = { navController.navigate(MainRoute.SignUp.name) }
             )
         }
 
@@ -42,24 +39,10 @@ fun InternshipNavHost(
             )
         }
 
-        composable(SignUpRoute.Name.name) {
-            SignUpNameScreen(
-                navigateToImage = { navController.navigate(SignUpRoute.Image.name) },
+        composable(MainRoute.SignUp.name) {
+            SignUpScreen(
+                navigateToSignIn = { navController.navigate(MainRoute.SignIn.name) },
                 navigateToMain = { navController.popBackStack() }
-            )
-        }
-
-        composable(SignUpRoute.Image.name) {
-            SignUpImageScreen(
-                navigateToName = { navController.popBackStack() },
-                navigateToPassword = { navController.navigate(SignUpRoute.Password.name) }
-            )
-        }
-
-        composable(SignUpRoute.Password.name) {
-            SignUpPasswordScreen(
-                navigateToImage = { navController.popBackStack() },
-                navigateToSignIn = { navController.navigate(MainRoute.SignIn.name) }
             )
         }
     }
